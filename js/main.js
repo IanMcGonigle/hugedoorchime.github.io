@@ -7,9 +7,7 @@
     sounds.push( new Howl({ src:['/audio/seinfeld.mp3'] }) );
     sounds.push( new Howl({ src:['/audio/cheers.mp3'] }) );
     sounds.push( new Howl({ src:['/audio/yeah.mp3'] }) );
-    // const seinfeld = registerSound('/audio/seinfeld.mp3');
-    // const cheers = registerSound('/audio/cheers.mp3');
-    // const yeah = registerSound('/audio/yeah.mp3');
+
 
     let currentIndex = 0;
     let isOpen = false;
@@ -78,16 +76,6 @@
   function onSoundComplete(){
     console.log('onSoundComplete ', currentIndex);
     currentIndex++;
-  };
-
-  function registerSound(src){
-    console.log('registerSound ', src);
-    let s = new Howl({
-      src: [src]
-    });
-
-    sounds.push(s);
-    return s;
   };
 
   function playSound(){
