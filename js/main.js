@@ -1,24 +1,24 @@
 (function(){
 
+  const readOut = document.getElementById('readOut');
+  const sounds = [];
+  const path = 'audio/';
+
+  sounds.push( new Howl({ src:[ path + 'seinfeld.mp3'] }) );
+  sounds.push( new Howl({ src:[ path + 'cheers.mp3'] }) );
+  sounds.push( new Howl({ src:[ path + 'yeah.mp3'] }) );
+
+
+  let currentIndex = 0;
+  let isOpen = false;
+
   function init() {
-    const startBtn = document.getElementById('connectPuck');
-    const readOut = document.getElementById('readOut');
-    const sounds = [];
-    const path = 'https://rawgit.com/ianMcHuge/hugedoorchime.github.io/audio/';
 
-    sounds.push( new Howl({ src:[ path + 'seinfeld.mp3'] }) );
-    sounds.push( new Howl({ src:[ path + 'cheers.mp3'] }) );
-    sounds.push( new Howl({ src:[ path + 'yeah.mp3'] }) );
-
-
-    let currentIndex = 0;
-    let isOpen = false;
-
-    startBtn.addEventListener('click', function(){
+    document.getElementById('connectPuck').addEventListener('click', function(){
       initConnection();
     });
 
-    playBtn.addEventListener('click', function(){
+    document.getElementById('playBtn').addEventListener('click', function(){
       playSound();
     });
   };
@@ -81,12 +81,12 @@
   };
 
   function playSound(){
-    console.log('playSound ', (currentIndex % sounds.length) );
+
     let s = sounds[ currentIndex % sounds.length ];
     s.play();
 
     s.on('end', function(){
-      console.log(src + ' Finished!');
+      console.log(' Finished!');
       onSoundComplete();
     });
   }
