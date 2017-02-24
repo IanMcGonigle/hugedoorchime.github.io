@@ -4,9 +4,11 @@
     const startBtn = document.getElementById('connectPuck');
     const readOut = document.getElementById('readOut');
     const sounds = [];
-    sounds.push( new Howl({ src:['/audio/seinfeld.mp3'] }) );
-    sounds.push( new Howl({ src:['/audio/cheers.mp3'] }) );
-    sounds.push( new Howl({ src:['/audio/yeah.mp3'] }) );
+    const path = 'https://rawgit.com/ianMcHuge/hugedoorchime.github.io/audio/';
+
+    sounds.push( new Howl({ src:[ path + 'seinfeld.mp3'] }) );
+    sounds.push( new Howl({ src:[ path + 'cheers.mp3'] }) );
+    sounds.push( new Howl({ src:[ path + 'yeah.mp3'] }) );
 
 
     let currentIndex = 0;
