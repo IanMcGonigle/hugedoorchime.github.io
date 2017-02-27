@@ -15,6 +15,7 @@
   let currentIndex = 0;
   let isOpen = false;
   let isPlaying = false;
+  let zero = null;
 
   function init() {
 
@@ -37,7 +38,7 @@
     var obj = null;
     try{
       obj = JSON.parse( v );
-      console.log( obj );
+      // console.log( obj );
     }catch(error){
       console.log(error);
     }
@@ -50,6 +51,13 @@
 
   function readMagnetometer(x, y, z){
     console.log('readMagnetometer ', x, y, z);
+
+    zero = zero || {x:x, y:y, z:z};
+
+    x = x - zero.x;
+    y = y - zero.y;
+    z = z - zero.z;
+
     var strength = Math.sqrt( x*x + y*y + z*z);
     var open = strength < 1000;
     if(open != isOpen){
