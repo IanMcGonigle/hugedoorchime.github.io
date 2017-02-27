@@ -41,6 +41,12 @@
 
   function readMagnetometer(x, y, z){
     console.log('readMagnetometer ', x, y, z);
+    var strength = Math.sqrt( x*x + y*y + z*z);
+    var open = strength < 1000;
+    if(open != isOpen){
+      isOpen = open;
+      playSound();
+    }
   };
 
   function initConnection(){
