@@ -11,6 +11,7 @@
 
   let currentIndex = 0;
   let isOpen = false;
+  let isPlaying = false;
 
   function init() {
 
@@ -82,12 +83,15 @@
 
   function playSound(){
 
+    if( isPlaying ) return;
     let s = sounds[ currentIndex % sounds.length ];
     s.play();
+    isPlaying = true;
 
     s.on('end', function(){
       console.log(' Finished!');
       onSoundComplete();
+      isPlaying = false;
     });
   }
 
