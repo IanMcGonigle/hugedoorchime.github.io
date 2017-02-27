@@ -6,11 +6,55 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.2/howler.core.min.js"></script>
   <script src="js/main.js"></script>
   <!-- <script src="https://raw.githubusercontent.com/ianMcHuge/hugedoorchime.github.io/master/js/main.js"></script> -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+  <style>
+
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    button {
+      border:none;
+
+    }
+
+    #playBtn {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      background-size:contain;
+      background-repeat: no-repeat;
+      background-color: #fff;
+      background-position: 50% 50%;
+      padding: 20px;
+      text-indent: -99999px;
+    }
+
+    #connectPuck{
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      background: #999;
+      font-size: 40px;
+      font-family: sans-serif;
+      text-align: center;
+      z-index: 10;
+    }
+    #connectPuck.connected {
+      display: none;
+    }
+  </style>
 </head>
 <body>
-  <button id="connectPuck" type="button" class="btn btn-primary">Connect to puck</button>
   <h1 id="readOut">Read Out</h1>
   <button id="playBtn" type="button" class="btn btn-success">Play();</button>
+  <button id="connectPuck" type="button" class="btn btn-primary">Connect to puck</button>
 </body>
 </html>

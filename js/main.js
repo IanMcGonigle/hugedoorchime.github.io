@@ -1,7 +1,10 @@
 (function(){
 
-  let readOut;;
+  let readOut;
+  let playBtn;
+  let connectPuck;
   const sounds = [];
+  const imgs = ['seinfeld_logo.png', 'cheers_logo.png', 'the_who_logo.png'];
   const path = 'audio/';
 
   sounds.push( new Howl({ src:[ path + 'seinfeld.mp3'] }) );
@@ -16,14 +19,18 @@
   function init() {
 
     readOut = document.getElementById('readOut');
+    playBtn = document.getElementById('playBtn');
+    connectPuck = document.getElementById('connectPuck');
 
-    document.getElementById('connectPuck').addEventListener('click', function(){
+    connectPuck.addEventListener('click', function(){
       initConnection();
     });
 
-    document.getElementById('playBtn').addEventListener('click', function(){
+    playBtn.addEventListener('click', function(){
       playSound();
     });
+
+    showImage();
   };
 
   function onLine(v) {
@@ -62,6 +69,7 @@
       connection = c;
       var buf = "";
       readOut.innerHTML = 'Puck Connected!';
+      connectPuck.classList.add('connected');
 
       connection.on("data", function(d) {
         buf += d;
@@ -87,6 +95,7 @@
   function onSoundComplete(){
     console.log('onSoundComplete ', currentIndex);
     currentIndex++;
+    showImage();
   };
 
   function playSound(){
@@ -101,7 +110,13 @@
       onSoundComplete();
       isPlaying = false;
     });
-  }
+  };
+
+  function showImage(){
+    var newImg = 'images/' + imgs[ currentIndex % imgs.length ];
+    console.log('showImage ', newImg, readOut);
+    playBtn.style.backgroundImage = 'url('+newImg+')';
+  };
 
   window.onload = init;
 })();
