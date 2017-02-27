@@ -1,6 +1,6 @@
 (function(){
 
-  const readOut = document.getElementById('readOut');
+  let readOut;;
   const sounds = [];
   const path = 'audio/';
 
@@ -14,6 +14,8 @@
   let isPlaying = false;
 
   function init() {
+
+    readOut = document.getElementById('readOut');
 
     document.getElementById('connectPuck').addEventListener('click', function(){
       initConnection();
