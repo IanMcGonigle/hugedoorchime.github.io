@@ -54,13 +54,13 @@
 
   function readMagnetometer(x, y, z){
 
-    x = Math.abs(x) - Math.abs(zero.x);
-    y = Math.abs(y) - Math.abs(zero.y);
-    z = Math.abs(z) - Math.abs(zero.z);
+    // x = Math.abs(x) - Math.abs(zero.x);
+    // y = Math.abs(y) - Math.abs(zero.y);
+    // z = Math.abs(z) - Math.abs(zero.z);
 
     var strength = Math.sqrt( x*x + y*y + z*z);
 
-    console.log('readMagnetometer ', x, y, z, strength, zero);
+    console.log('readMagnetometer! ', x, y, z, strength, zero);
 
     var open = strength < 1000;
     if(open != isOpen){
