@@ -35,6 +35,7 @@
   };
 
   function onLine(v) {
+    console.log("v ",  v, typeof v);
     var obj = null;
     try{
       obj = JSON.parse( v );
@@ -45,20 +46,22 @@
 
 
     if( obj ){
+      zero = zero || {x:parseInt(obj.magX), y:parseInt(obj.magY), z:parseInt(obj.magZ)};
+
       readMagnetometer(obj.magX, obj.magY, obj.magZ);
     }
   };
 
   function readMagnetometer(x, y, z){
-    console.log('readMagnetometer ', x, y, z);
 
-    zero = zero || {x:x, y:y, z:z};
-
-    x = x - zero.x;
-    y = y - zero.y;
-    z = z - zero.z;
+    x = Math.abs(x) - Math.abs(zero.x);
+    y = Math.abs(y) - Math.abs(zero.y);
+    z = Math.abs(z) - Math.abs(zero.z);
 
     var strength = Math.sqrt( x*x + y*y + z*z);
+
+    console.log('readMagnetometer ', x, y, z, strength, zero);
+
     var open = strength < 1000;
     if(open != isOpen){
       isOpen = open;
@@ -94,7 +97,8 @@
         console.log("set time out called")
 
         // get all data is a method on the puck itself
-        connection.write("setInterval(function(){Bluetooth.println(getAllData());},10);\n",
+        connection.write("setInterval(function(){ Bluetooth.println( getAllData());},500);\n",
+        // connection.write("setInterval(function(){Bluetooth.println(Puck.mag(); \n);},10);\n",
           function() { console.log("Ready..."); });
       }, 1500);
     });
